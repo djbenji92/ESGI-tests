@@ -1,0 +1,29 @@
+<div class="content">
+
+
+	<h1>Liste des categories</h1>
+
+	<div ng-controller="ctrlCategorie">
+		<!--<div ng-repeat="categorie in listeCategorie">
+			<p>Nom categorie : {{categorie.nomCategorie}}</p>
+			{{categorie.descriptionCategorie}}
+			<img src="images/icones/{{categorie.imageCategorie}}">
+			<br>
+		</div>-->
+
+		<div ng-repeat="categorie in listeCategorie">
+			<!--<div class="row">-->
+			  <div class="col-sm-6 col-md-3 categorie">
+			    <div class="thumbnail">
+				    <img class="imageArticle" src="images/icones/{{categorie.imageCategorie}}" alt="test">
+				    <div class="caption">
+					    <h3>{{categorie.nomCategorie}}</h3>
+					    <p class="justify">{{categorie.descriptionCategorie}}</p>
+					    <p class="center"><a href="#/categorie/{{categorie.ressourceCategorie}}" class="btn btn-primary" role="button">Voir</a></p>
+			      </div>
+			    </div>
+			  </div>
+			<!--</div>-->
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<div class="content">
+	<h1>Articles récents</h1>
+	<div ng-controller="ctrlArticle">
+		<div ng-repeat="article in listeArticles | orderBy:'-dateArticle'">
+			<a href="#/article/{{article.idArticle}}"><p>Nom article : {{article.nomArticle}}</p></a>
+			<p>Description : {{article.descriptionArticle}}</p>
+			<br>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="content" ng-controller="getArticle">
+	
+	<div ng-repeat="partiesArticle in article">
+		
+		<h1>{{partiesArticle.nomArticle}}</h1>
+		<p>{{partiesArticle.descriptionArticle}}</p>
+		
+		<h3>{{partiesArticle.sousTitreArticle}}</h3>
+		<p>{{partiesArticle.contenuArticle}}</p>
+	
+		<h3>{{partiesArticle.sousTitreArticle2}}</h3>
+		<p>{{partiesArticle.contenuArticle2}}</p>
+
+		<h3>{{partiesArticle.sousTitreArticle3}}</h3>
+		<p>{{partiesArticle.contenuArticle3}}</p>
+
+		<h3>{{partiesArticle.sousTitreArticle4}}</h3>
+		<p>{{partiesArticle.contenuArticle4}}</p>
+
+		<h3>{{partiesArticle.sousTitreArticle5}}</h3>
+		<p>{{partiesArticle.contenuArticle5}}</p>
+	</div>	
+
+	<br>
+	<br>
+	<a href="#/articles"><button class="btn btn-primary">Précedent</button></a>
+</div>

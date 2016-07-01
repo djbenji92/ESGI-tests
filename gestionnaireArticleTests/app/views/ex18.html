@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta Charest="UTF-8">
+		<title>Test AngularJS</title>
+		<script src="lib/angular.min.js"></script>
+		<script src="javascript/ex18.js"></script>
+	</head>
+	<body ng-app ng-controller="monControl">
+		<form>
+			<p>Nom <input type:'text' ng-model="perso.nom"></p>
+			<p>Prénom <input type:'text' ng-model="perso.prenom"></p>
+			<p>Age <input type:'text' ng-model="perso.age"></p>
+			<p>Poids <input type:'text' ng-model="perso.poids"></p>
+			<button ng-click="traitForm()">Valider</button>
+		</form>
+		<h1>Liste des fiches</h1>
+		<div ng-repeat="perso in listePerso">
+			<p>Nom : {{perso.nom}}</p>
+			<p>Prénom : {{perso.prenom}}</p>
+			<p>Age : {{perso.age}}</p>
+			<p>Poids : {{perso.poids}}</p>
+			<br>
+		</div>
+	</body> 
+</html>

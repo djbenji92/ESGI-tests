@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta Charest="UTF-8">
+		<title>Gestionnaire article</title>
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-route.min.js"></script>
+		<script src="JavaScript/controllers/ctrlArticle.js"></script>
+		<script src="JavaScript/controllers/ctrlCategorie.js"></script>
+		<script src="JavaScript/controllers/ctrlConnection.js"></script>
+		<script src="javascript/ex18.js"></script>
+		<script src="Javascript/app.js"></script>
+		<link rel="stylesheet" href="styles/bootstrap.css" />
+		<link rel="stylesheet" href="styles/styles.css" />
+	</head>
+	<body ng-app="gestionnaireArticle">
+
+		<div class="container-fluid">
+			<div ng-controller="search">
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+		 			<div class="nav-header">
+		 				<a class="navbar-brand" href="">Project : gestionnaire d'article</a>
+		 				<ul class="nav navbar-nav">
+		 					<li><a href="#/home"><span class="glyphicon glyphicon-home"></span>   Accueil</a></li>
+		 					<li><a href="#/categorie/angularjs">Angular JS</a></li>
+		 					<li><a href="#/categorie/nodejs">Node JS</a></li>
+		 					<li><a href="#/categorie/mongodb">MongoDB</a></li>
+		 					<li><a href="#/categorie/php">PHP</a></li>
+		 					<li><a href="#/categorie/mysql">MySQL</a></li>
+		 					<li><a href="#/categorie/divers">Divers</a></li>
+		 				</ul>
+		 			</div>
+
+		 			<form class="navbar-form navbar-right margeDroiteNav" role="search">
+		 				<div>
+			 				<div class="input-group">
+			 					<input type="text" ng-model="searchArticles" class="form-control" placeholder="Votre recherche...">
+			 				</div>
+		 				
+		 					<button ng-click="search()" class="btn btn-primary" type="submit">GO</button>
+		 				</div>
+		 			</form>
+		 		</nav>
+
+		 	
+		 		<div id="resultSearch"  ng-show="afficheSearch == true">
+					<h1>Résultats de votre recherche : </h1>
+			 		<ul ng-repeat="article in articles | filter:searchArticles | orderBy: 'tagArticle' ">
+						<a href="#/article/{{article.idArticle}}"><li>{{article.nomArticle}}</li></a>
+				    </ul>
+			 	</div>
+		
+			</div>
+
+
+			<div id="menu">
+				<div id="contentMenu">
+					<img id="imageMenu" src="images/image.png">
+					
+					<div id="liensMenu">
+						<a href="#/home">Accueil</a>
+						<br>
+						<a href="#/articlesRecents">Articles récents</a>
+						<br>
+						<a href="#/articles">Articles</a>
+						<br>
+						<a href="#/categories">Catégories</a>
+						<br>
+						<br>
+						<a href="#/createArticle">Creer un article</a>
+						<br>
+						<a href="#/createCategorie">Creer une catégorie</a>
+
+					</div>	
+				</div>
+			</div>
+
+			
+			
+			<div id="container" ng-view>
+
+			</div>
+		</div>
+	</body> 
+
+
+
+</html>

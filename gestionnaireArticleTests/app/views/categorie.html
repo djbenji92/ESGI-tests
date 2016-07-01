@@ -1,0 +1,29 @@
+<div class="content" ng-controller="getArticlesByCategorie">
+	
+	<div ng-repeat="elemCat in categorie">
+			
+		<img style="width:100px; height:100px; float:left;" src="images/icones/{{elemCat.imageCategorie}}">
+		<h1 style="float:left; margin-left:30px;">{{elemCat.nomCategorie}}</h1>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+
+	<h1>Articles : </h1>
+	<br>
+	<hr>
+
+	<div ng-repeat="article in articles">
+		<a href="#/article/{{article.idArticle}}"><h2>{{article.nomArticle}}</h2></a>
+		<p>{{article.descriptionArticle}}</p>
+		<hr>
+	</div>	
+
+	<br>
+	<br>
+	<a href="#/categories">Précedent</a>
+</div>

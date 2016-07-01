@@ -1,0 +1,35 @@
+<div class="content" ng-controller="ctrlCategorie">
+	<div class="row">
+		<div class="col-sm-6">
+			<h1>Créer une catégorie</h1>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-sm-9">
+			<br>
+			<br>
+
+			<form>
+				<label>Nom catégorie :</label> 
+				<input class="form-control" type="text" ng-model="categorie.nomCategorie">
+				<br>
+
+				<label>Description catégorie :</label> 
+				<input class="form-control" type="text" ng-model="categorie.descriptionCategorie">
+				<br>
+
+				<label>Nom de l'image :</label> 
+				<input class="form-control" type="text" ng-model="categorie.imageCategorie">
+				<br>
+
+				<label>Ressource :</label> 
+				<input class="form-control" type="text" ng-model="categorie.ressource">
+				<br>
+
+				<button class="btn btn-primary" ng-click="enregistrerCategorie()">Valider</button>
+			</form>
+		</div>
+	</div>	
+</div>

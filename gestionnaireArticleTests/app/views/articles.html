@@ -1,0 +1,32 @@
+<div class="content">
+
+	<!--Modele categorie-->
+	<div class="row">
+		  <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail">
+			    <img class="imageArticle" src="images/image.png" alt="test">
+			    <div class="caption">
+			    <h3>Titre article</h3>
+			    <p class="justify">Description de l'article à ecrire en détail</p>
+			    <p class="center"><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<h1>Liste des articles</h1>
+	<hr>
+	<div ng-controller="ctrlArticle">
+		<div ng-repeat="article in listeArticles | orderBy:'dateArticle'">
+			<a href="#/article/{{article.idArticle}}"><h2>Nom article : {{article.nomArticle}}</h2></a>
+			<p>Publié le {{article.dateArticle}}</p>
+			<p>Tags : {{article.tagArticle}}</p>
+
+			<p>Description : {{article.descriptionArticle}}</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+
+

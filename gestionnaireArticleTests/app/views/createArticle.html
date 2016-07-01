@@ -1,0 +1,122 @@
+<div class="content">
+	<div class="row">
+		<div class="col-sm-6">
+			<h1>Créer un article</h1>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-sm-9" ng-controller="ctrlArticle">
+			<br>
+			<br>
+			<!-- V1
+			<form>
+				<label>Nom article :</label> 
+				<input class="form-control" type:'text' ng-model="article.nomArticle">
+				<br>
+
+				<label>Description Article :</label> 
+				<textarea class="form-control" rows="5" ng-model="article.descriptionArticle"></textarea>
+				<br>
+
+				<label>Contenu article</label> 
+				<textarea class="form-control" rows="5" ng-model="article.contenuArticle"></textarea>
+				<br>
+
+				<label>Tags article : </label> 
+				<input type:'text' class="form-control" ng-model="article.tagArticle">
+				<br>
+
+				<button class="btn btn-default" ng-click="enregistrerArticle()">Valider</button>
+			</form>-->
+
+			<form>
+				<label>Nom article :</label> 
+				<input class="form-control" type:'text' ng-model="article.nomArticle">
+				<br>
+
+				<label>Description Article :</label> 
+				<textarea class="form-control" rows="5" ng-model="article.descriptionArticle"></textarea>
+				<br>
+
+				<label>Sous-titre article</label> 
+				<input class="form-control" type="text" ng-model="article.sousTitreArticle">
+				<br>
+
+				<label>Contenu article</label> 
+				<textarea class="form-control" rows="5" ng-model="article.contenuArticle"></textarea>
+				<br>
+
+				<div id="partie2Article" ng-show="nbPartie > 0">
+					<label>Sous-titre article2</label> 
+					<input class="form-control" type="text" ng-model="article.sousTitreArticle2">
+					<br>
+
+					<label>Contenu article2</label> 
+					<textarea class="form-control" rows="5" ng-model="article.contenuArticle2"></textarea>
+					<br>
+				</div>
+	
+				<div id="partie3Article" ng-show="nbPartie > 1">
+					<label>Sous-titre article3</label> 
+					<input class="form-control" type="text" ng-model="article.sousTitreArticle3">
+					<br>
+
+					<label>Contenu article3</label> 
+					<textarea class="form-control" rows="5" ng-model="article.contenuArticle3"></textarea>
+					<br>
+				</div>
+	
+				<div id="partie4Article" ng-show="nbPartie > 2">
+					<label>Sous-titre article4</label> 
+					<input class="form-control" type="text" ng-model="article.sousTitreArticle4">
+					<br>
+
+						<label>Contenu article4</label> 
+					<textarea class="form-control" rows="5" ng-model="article.contenuArticle4"></textarea>
+					<br>
+				</div>
+
+				<div id="partie5Article" ng-show="nbPartie > 3">
+					<label>Sous-titre article5</label> 
+					<input class="form-control" type="text" ng-model="article.sousTitreArticle5">
+					<br>
+
+					<label>Contenu article5</label> 
+					<textarea class="form-control" rows="5" ng-model="article.contenuArticle5"></textarea>
+					<br>
+				</div>
+
+
+				<div ng-show="nbPartie !== 4">
+					<button type="button" class="btn btn-primary" aria-label="Left Align" ng-click="addPartieArticle()">
+						 Ajouter une nouvelle partie à l'article
+					</button>
+					<br>
+					<br>
+					<br>
+				</div>
+
+				 <h1>cat: {{filterCategorie.ressourceCategorie}}</h1>
+				 <label for="categories">Catégories:</label>
+				 <select ng-model="filterCategorie" ng-options=" categorie.nomCategorie for categorie in listeCategorie" class="form-control" id="categories" >
+				   <!--<option>Angular JS</option>
+				   <option>Node JS</option>
+				   <option>Mongo DB</option>
+				   <option>PHP</option>
+				   <option>MySQL</option>
+				   <option>Divers</option>-->
+				   <!--<option ng-selected="{{filterCategorie.ressourceCategorie == categorie.ressourceCategorie }}" ng-repeat="categorie in listeCategorie" value="{{categorie.ressourceCategorie}}">{{categorie.nomCategorie}}</option>-->
+				 </select>
+				 <br>
+
+				<label>Tags article : </label> 
+				<input type:'text' class="form-control" ng-model="article.tagArticle">
+				<br>
+
+				<button class="btn btn-primary" ng-click="enregistrerArticle()">Valider</button>
+			</form>
+		</div>
+	</div>	
+</div>

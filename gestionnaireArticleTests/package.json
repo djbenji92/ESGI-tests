@@ -1,0 +1,15 @@
+{
+  "name": "ex9.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ex9.js",
+  "kerberos": "0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.1.2"
+  }
+}

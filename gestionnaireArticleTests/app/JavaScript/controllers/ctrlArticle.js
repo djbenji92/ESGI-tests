@@ -1,8 +1,12 @@
+//on definit un controlleur que l'on va utiliser dans le html
 function ctrlArticle($scope,$http){
+	//on definit un methode affiche qui va permettre l'affichage de tous les article
 	$scope.affiche=function(){
+		//connexion au webservice(app.js à la racine)
 		$http.get('/api/articles')
 		.success(function(data){
 			if (data!='err'){
+				//on definit un scope (permet de transmettre des données) on va utilise listeArticles dans articles.html
 				$scope.listeArticles=data;
 			}
 		})
@@ -39,7 +43,7 @@ function ctrlArticle($scope,$http){
 	var nbPartie = 0;
 	$scope.btnAddPartie = true;
 	$scope.addPartieArticle=function(){
-		
+
 		nbPartie = nbPartie + 1;
 		$scope.nbPartie = nbPartie;
 
@@ -75,12 +79,12 @@ function toggle($scope){
 		else {
 			$scope.stateToggle = false;
 		}
-		
+
 	}
 }
 
 function getCategorie($scope, $routeParams, $rootScope, $http){
-	
+
 }
 
 function getArticlesByCategorie($scope, $routeParams, $rootScope, $http){
@@ -121,14 +125,14 @@ function search($scope, $http){
 				}
 			})
 
-		
+
 		$scope.afficheSearch = false;
 		$scope.search=function(){
 			$scope.afficheSearch = true;
 			console.log("recherche lancé");
 		}
-		
-		
+
+
 }
 
 
@@ -137,11 +141,9 @@ function search($scope, $http){
 
 /*var nbPartie = 0;
 function addPartieArticle($scope){
-	
+
 	nbPartie = nbPartie + 1;
 	alert(nbPartie);
 	$scope.nbPartie = nbPartie;
 
 }*/
-
-

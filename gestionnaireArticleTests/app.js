@@ -1,6 +1,9 @@
+//inclut Mongo sur le serveur
 var mongoose = require('mongoose');
+//Permet la connexion à mongo sur la base de données gestionnaireArticle
 mongoose.connect('mongodb://localhost/gestionnaireArticle');
 
+//Definit les tables de la base de données
 var articleSchema=mongoose.Schema({
 	idArticle:{type:Number},
 	nomArticle:{type:String},
@@ -40,11 +43,13 @@ var adminSchema=mongoose.Schema({
 })
 var Admin=mongoose.model('Admin', adminSchema);
 
+//Inclut d'autres librairies
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
 
+//Indique au serveur les dossier qu'il est capable de lire
 app.use('/JavaScript', express.static(__dirname + '/app/javascript'));
 app.use('/lib', express.static(__dirname + '/app/lib'));
 app.use('/styles', express.static(__dirname + '/app/styles'));
@@ -53,26 +58,30 @@ app.use('/views', express.static(__dirname + '/app/views'));
 app.use('/model', express.static(__dirname + '/app/model'));
 //app.use(express.bodyParser());
 app.use(bodyParser.json());
+//Demarre l'application sur le fichier index
 app.get('/', function (req, res) {
 	res.sendfile(__dirname + '/app/index.html');
 });
 
 
 
-
+//Definition d'un url du webservice
 app.get('/api/articles', function(req, res) {
+	//Recherche dans mongo db l'ensemble des articles
 	Article.find(null)
 	.exec(function(err,fiches){
 		if (err==true){
 			res.send('err');
 		}
 		else{
+			//retourne l'ensemble des article sous forme de json
 			res.json(fiches);
 		}
 	})
 });
 
 app.get('/api/article/:id', function(req, res) {
+	//req.params permet d'aller chercher l'id dans l'url et de le recherche dans mongo
 	Article.find({idArticle:req.params.id})
 	.exec(function(err,fiches){
 		if (err==true){
@@ -85,7 +94,7 @@ app.get('/api/article/:id', function(req, res) {
 });
 
 app.post('/api/addArticle', function(req,res) {
-
+	//compte l'ensemble des articles pour incrémenter l'id (pas de suppression donc pas de probleme)
 	Article.count({} , function(err, count){
 		var nombreArticle = count + 1;
 		var dateArticle = new Date();
@@ -197,6 +206,7 @@ app.post('/api/addCategorie', function(req,res) {
 });
 
 //login
+//non fonctionnel
 app.post('/api/createUser', function(req, res){
 	var mdp = req.body.password;
 
@@ -260,4 +270,5 @@ app.get('*', function(req, res) {
     res.redirect('/');
 });
 
+console.log("Pour visionner l'application rendez-vous à l'url : localhost:8080");
 app.listen(8080);

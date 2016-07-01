@@ -2,6 +2,7 @@ var monApp =angular.module('gestionnaireArticle',['ngRoute']);
 
 monApp.config(function($routeProvider){
 	$routeProvider
+	//definir une url, et associer une vue
 	.when('/home',{templateUrl:'views/home.html'})
 	.when('/articles',{templateUrl:'views/articles.html'})
 	.when('/article/:id',{templateUrl:'views/article.html'})
@@ -22,5 +23,3 @@ monApp.config(function($routeProvider){
 
 	.otherwise({redirectTo:'/home'});
 })
-
-

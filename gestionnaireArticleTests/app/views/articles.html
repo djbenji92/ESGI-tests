@@ -16,7 +16,10 @@
 
 	<h1>Liste des articles</h1>
 	<hr>
+	<!--importe dire le controlleur que l'on souhaite utilisé dans un div-->
 	<div ng-controller="ctrlArticle">
+		<!-- on récupéré la variable listeArticles dans ctrlArticle.js -->
+		<!-- on parcour l'objet en affichant la valeur souhaité -->
 		<div ng-repeat="article in listeArticles | orderBy:'dateArticle'">
 			<a href="#/article/{{article.idArticle}}"><h2>Nom article : {{article.nomArticle}}</h2></a>
 			<p>Publié le {{article.dateArticle}}</p>
@@ -27,6 +30,3 @@
 		</div>
 	</div>
 </div>
-
-
-

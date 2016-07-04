@@ -1,15 +1,24 @@
 {
-  "name": "ex9.js",
+  "name": "gestionnairearticle",
   "version": "1.0.0",
-  "description": "",
+  "description": "Technologies utilisées:\r Node.js\r Angular JS\r Mongo DB",
   "main": "ex9.js",
   "kerberos": "0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^2.1.2"
-  }
+    "chai": "^3.5.0",
+    "express": "^4.14.0",
+    "install": "^0.8.1",
+    "mocha": "^2.5.3",
+    "mongodb": "^2.1.2",
+    "request": "^2.72.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {}
 }

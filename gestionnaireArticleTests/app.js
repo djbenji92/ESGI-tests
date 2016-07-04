@@ -49,6 +49,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
 
+//nclude functions
+import {getArticlesForCategorie} from 'app/model/categorie';
+
 //Indique au serveur les dossier qu'il est capable de lire
 app.use('/JavaScript', express.static(__dirname + '/app/javascript'));
 app.use('/lib', express.static(__dirname + '/app/lib'));
@@ -67,6 +70,10 @@ app.get('/', function (req, res) {
 
 //Definition d'un url du webservice
 app.get('/api/articles', function(req, res) {
+	getAllArticles(res);
+});
+
+function getAllArticles(res){
 	//Recherche dans mongo db l'ensemble des articles
 	Article.find(null)
 	.exec(function(err,fiches){
@@ -78,11 +85,16 @@ app.get('/api/articles', function(req, res) {
 			res.json(fiches);
 		}
 	})
-});
+}
 
 app.get('/api/article/:id', function(req, res) {
 	//req.params permet d'aller chercher l'id dans l'url et de le recherche dans mongo
-	Article.find({idArticle:req.params.id})
+	var id = req.params.id;
+	getArticle(id, res);
+});
+
+function getArticle(id, res){
+	Article.find({idArticle:id})
 	.exec(function(err,fiches){
 		if (err==true){
 			res.send('err');
@@ -91,19 +103,20 @@ app.get('/api/article/:id', function(req, res) {
 			res.json(fiches);
 		}
 	})
-});
+}
 
 app.post('/api/addArticle', function(req,res) {
 	//compte l'ensemble des articles pour incrémenter l'id (pas de suppression donc pas de probleme)
+
+	var articleDB = req.body[1];
+	var categorieDB = req.body[0];
+	ajouterArticle(articleDB, categorieDB, res);
+});
+
+function ajouterArticle(articleDB, categorieDB, res){
 	Article.count({} , function(err, count){
 		var nombreArticle = count + 1;
 		var dateArticle = new Date();
-		//console.log(req.body);
-		//console.log(req.body[0]);
-		//console.log(req.body[1]);
-
-		var articleDB = req.body[1];
-		var categorieDB = req.body[0];
 
 		var nouveauArticle=new Article({
 			idArticle:nombreArticle,
@@ -120,11 +133,10 @@ app.post('/api/addArticle', function(req,res) {
 			contenuArticle3:articleDB.contenuArticle3,
 
 			sousTitreArticle4:articleDB.sousTitreArticle4,
-			contenuArticle4:req.body.contenuArticle4,
+			contenuArticle4:articleDB.contenuArticle4,
 
 			sousTitreArticle5:articleDB.sousTitreArticle5,
 			contenuArticle5:articleDB.contenuArticle5,
-
 
 			dateArticle:dateArticle,
 			tagArticle:articleDB.tagArticle,
@@ -140,11 +152,14 @@ app.post('/api/addArticle', function(req,res) {
 		})
 
 	});
-
-});
+}
 
 //Categories
 app.get('/api/categories', function(req, res) {
+	getAllCategories(res);
+});
+
+function getAllCategories(res){
 	Categorie.find(null)
 	.exec(function(err,fiches){
 		if (err==true){
@@ -154,10 +169,15 @@ app.get('/api/categories', function(req, res) {
 			res.json(fiches);
 		}
 	})
-});
+}
 
 app.get('/api/categorie/:ressource', function(req, res) {
-	Categorie.find({ressourceCategorie:req.params.ressource})
+	var ressource = req.params.ressource;
+	getCategorie(ressource, res);
+});
+
+function getCategorie(ressource, res){
+	Categorie.find({ressourceCategorie:ressource})
 	.exec(function(err,categorie){
 		if (err==true){
 			res.send('err');
@@ -166,10 +186,15 @@ app.get('/api/categorie/:ressource', function(req, res) {
 			res.json(categorie);
 		}
 	})
-});
+}
 
 app.get('/api/articleByCategorie/:ressource', function(req, res) {
-	Article.find({_ressourceCategorie:req.params.ressource})
+	var ressource = req.params.ressource;
+	categorie.getArticlesForCategorie(ressource, res)
+});
+
+function getArticlesForCategorie(ressource, res){
+	Article.find({_ressourceCategorie:ressource})
 	.exec(function(err,articles){
 		if (err==true){
 			res.send('err');
@@ -178,19 +203,28 @@ app.get('/api/articleByCategorie/:ressource', function(req, res) {
 			res.json(articles);
 		}
 	})
-});
+}
 
 app.post('/api/addCategorie', function(req,res) {
+	var nom = req.body.nomCategorie;
+	var description = req.body.descriptionCategorie;
+	var image = req.body.imageCategorie;
+	var ressource = req.body.ressource;
 
+	ajouterCategorie(nom, description, image, ressource, res);
+
+});
+
+function ajouterCategorie(nom, description, image, ressource, res){
 	Categorie.count({} , function(err, count){
 		var nombreCategorie = count + 1;
 
 		var nouvelleCategorie=new Categorie({
 			idCategorie:nombreCategorie,
-			nomCategorie:req.body.nomCategorie,
-			descriptionCategorie:req.body.descriptionCategorie,
-			imageCategorie:req.body.imageCategorie,
-			ressourceCategorie:req.body.ressource
+			nomCategorie:nom,
+			descriptionCategorie:description,
+			imageCategorie:image,
+			ressourceCategorie:ressource
 		});
 		nouvelleCategorie.save(function(err){
 			if (err){
@@ -202,8 +236,7 @@ app.post('/api/addCategorie', function(req,res) {
 		})
 
 	});
-
-});
+}
 
 //login
 //non fonctionnel

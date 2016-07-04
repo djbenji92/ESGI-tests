@@ -50,7 +50,7 @@ var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
 
 //nclude functions
-import {getArticlesForCategorie} from 'app/model/categorie';
+//import {getArticlesForCategorie} from 'app/model/categorie';
 
 //Indique au serveur les dossier qu'il est capable de lire
 app.use('/JavaScript', express.static(__dirname + '/app/javascript'));
@@ -190,7 +190,7 @@ function getCategorie(ressource, res){
 
 app.get('/api/articleByCategorie/:ressource', function(req, res) {
 	var ressource = req.params.ressource;
-	categorie.getArticlesForCategorie(ressource, res)
+	getArticlesForCategorie(ressource, res)
 });
 
 function getArticlesForCategorie(ressource, res){

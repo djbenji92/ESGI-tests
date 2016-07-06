@@ -30,8 +30,8 @@ describe("Gestionnaire article", function() {
     });
   });*/
 
-  describe("show categories", function() {
-    it("return an object in response", function(done) {
+  describe("show categorie", function() {
+    it("return an object in response with informations of the categorie", function(done) {
         request({url:"http://localhost:8080/api/categorie/angularjs"}, function(error, response, body){
 
           /*var obj = JSON.parse(body);
@@ -44,7 +44,20 @@ describe("Gestionnaire article", function() {
           expect(JSON.parse(body)[0].ressource).to.equal("angularjs");
           expect(JSON.parse(body)[0].ressourceCategorie).to.equal("angularjs");
           done();
+        })
+    });
+  });
 
+  describe("show article", function() {
+    it("return an object in response with informations of the article", function(done) {
+        request({url:"http://localhost:8080/api/article/1"}, function(error, response, body){
+          expect(JSON.parse(body)[0].idArticle).to.equal(1);
+          expect(JSON.parse(body)[0].nomArticle).to.equal("Mon article angular JS");
+          expect(JSON.parse(body)[0].descriptionArticle).to.equal("Insertion dans la base de données du premier article");
+          expect(JSON.parse(body)[0].contenuArticle).to.equal("RAD");
+          expect(JSON.parse(body)[0].dateArticle).to.equal("2016-01-06T17:27:03.675Z");
+          expect(JSON.parse(body)[0].tagArticle).to.equal("article angular js");
+          done();
         })
     });
   });

@@ -231,7 +231,8 @@ function ajouterCategorie(nom, description, image, ressource, res){
 				res.send('err');
 			}
 			else{
-				res.send();
+
+				res.send(nouvelleCategorie);
 			}
 		})
 

@@ -1,6 +1,3 @@
-//var casper = require('casper').create();
-
-
 function HomePage() {
     this.url = "http://localhost:8080/#/home";
 
@@ -11,16 +8,8 @@ function HomePage() {
 
     this.checkPage = function() {
         casper.then(function() {
-            casper.test.assertTextExists("Tutoriels de différentes technologies", 'Node JS');
+            casper.test.assertTextExists("Tutoriels de différentes technologies", 'Page accueil ok');
         });
         return this;
     };
 }
-
-//casper.run();
-
-/*
-casper.test.begin("Hello, Test!", 1, function(test) {
-  test.assert(true);
-  test.done();
-});*/

@@ -147,7 +147,7 @@ function ajouterArticle(articleDB, categorieDB, res){
 				res.send('err');
 			}
 			else{
-				res.send();
+				res.send(nouveauArticle);
 			}
 		})
 

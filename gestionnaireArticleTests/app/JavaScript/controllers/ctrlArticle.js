@@ -22,7 +22,8 @@ function ctrlArticle($scope,$http){
 			else{
 				$scope.article={};
 				//$scope.affiche();
-				alert("enregistrement effectué ! Good code :)");
+				//alert("enregistrement effectué !");
+				document.location.href="http://localhost:8080/#/article/" + data.idArticle;
 			}
 		})
 	}

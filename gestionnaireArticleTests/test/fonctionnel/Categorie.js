@@ -56,6 +56,12 @@ function Categorie() {
             casper.test.assertTextExists('Articles :', 'page de la categorie');
         });
 
+        casper.start(this.url);
+        casper.then(function() {
+          casper.test.assertTextExists(nom, 'affichage du nom de categorie');
+          casper.test.assertTextExists(desc, 'affichage de la description de categorie');
+        });
+
         return this;
     };
 

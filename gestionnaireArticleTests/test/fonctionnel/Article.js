@@ -8,7 +8,7 @@ function Article() {
 
     this.checkPage = function() {
         casper.then(function() {
-            casper.test.assertTextExists("Liste des articles", 'Liste des categories');
+            casper.test.assertTextExists("Liste des articles", 'Liste des articles');
         });
         return this;
     };
@@ -63,6 +63,21 @@ function Article() {
           });
         }, function failure() {
         casper.test.fail('Echec de la redirection sur l article');
+      });
+
+      casper.then(function() {
+        casper.test.assertTextExists(nom, 'affiche nom article');
+        casper.test.assertTextExists(desc, 'affiche description article');
+        casper.test.assertTextExists(titre1, 'affiche titre1 article');
+        casper.test.assertTextExists(content1, 'affiche contenu1 article');
+        casper.test.assertTextExists(titre2, 'affiche titre2 article');
+        casper.test.assertTextExists(content2, 'affiche contenu2 article');
+        casper.test.assertTextExists(titre3, 'affiche titre3 article');
+        casper.test.assertTextExists(content3, 'affiche contenu3 article');
+        casper.test.assertTextExists(titre4, 'affiche titre4 article');
+        casper.test.assertTextExists(content4, 'affiche contenu4 article');
+        casper.test.assertTextExists(titre5, 'affiche titre5 article');
+        casper.test.assertTextExists(content5, 'affiche contenu5 article');
       });
 
     return this;

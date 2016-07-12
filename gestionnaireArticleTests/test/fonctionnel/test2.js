@@ -43,3 +43,13 @@ casper.test.begin('tests des articles', 1, function (test) {
     test.done();
   });
 });
+
+casper.test.begin('Creation article', 1, function (test) {
+  Article.accessPageCreateArticle();
+  Article.checkPageCreateArticle();
+  Article.createArticle('Tutoriel CasperJS', 'A travers ce tutoriel blablabla', 'Faire un test', 'blabla', 'part2', 'content2', 'part3', 'content3', 'part4', 'content4', 'part5', 'content5', 'casperjs' );
+
+  casper.run(function () {
+    test.done();
+  });
+});

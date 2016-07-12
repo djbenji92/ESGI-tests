@@ -1,5 +1,5 @@
-function HomePage() {
-    this.url = "http://localhost:8080/#/home";
+function Categorie() {
+    this.url = "http://localhost:8080/#/categories";
 
     this.accessPage = function() {
         casper.start(this.url);
@@ -8,7 +8,7 @@ function HomePage() {
 
     this.checkPage = function() {
         casper.then(function() {
-            casper.test.assertTextExists("Tutoriels de différentes technologies", 'Page accueil');
+            casper.test.assertTextExists("Liste des categories", 'Liste des categories');
         });
         return this;
     };

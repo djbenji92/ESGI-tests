@@ -15,14 +15,16 @@ function ctrlCategorie($scope,$http){
 				alert("Désolé un problème est survenu lors de l'enregistrement");
 			}
 			else{
+				console.log(data.ressourceCategorie);
 				$scope.categorie={};
 				//$scope.affiche();
-				alert("enregistrement effectué ! Good code :)");
+				//alert("enregistrement effectué");
+				document.location.href="http://localhost:8080/#/categorie/" + data.ressourceCategorie;
 			}
 		})
 	}
 	$scope.affiche();
-	
+
 }
 
 function getCategorie($scope, $routeParams, $rootScope, $http) {

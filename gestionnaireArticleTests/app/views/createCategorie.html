@@ -11,25 +11,25 @@
 			<br>
 			<br>
 
-			<form>
-				<label>Nom catégorie :</label> 
-				<input class="form-control" type="text" ng-model="categorie.nomCategorie">
+			<form id="createCategorie">
+				<label>Nom catégorie :</label>
+				<input id="nom" name="nom" class="form-control" type="text" ng-model="categorie.nomCategorie">
 				<br>
 
-				<label>Description catégorie :</label> 
-				<input class="form-control" type="text" ng-model="categorie.descriptionCategorie">
+				<label>Description catégorie :</label>
+				<input id="desc" name="description" class="form-control" type="text" ng-model="categorie.descriptionCategorie">
 				<br>
 
-				<label>Nom de l'image :</label> 
-				<input class="form-control" type="text" ng-model="categorie.imageCategorie">
+				<label>Nom de l'image :</label>
+				<input  id="nomImage" name="nomImage" class="form-control" type="text" ng-model="categorie.imageCategorie">
 				<br>
 
-				<label>Ressource :</label> 
-				<input class="form-control" type="text" ng-model="categorie.ressource">
+				<label>Ressource :</label>
+				<input id="ressource" name="ressource" class="form-control" type="text" ng-model="categorie.ressource">
 				<br>
 
-				<button class="btn btn-primary" ng-click="enregistrerCategorie()">Valider</button>
+				<button id="enregistreCategorie" class="btn btn-primary" ng-click="enregistrerCategorie()">Valider</button>
 			</form>
 		</div>
-	</div>	
+	</div>
 </div>

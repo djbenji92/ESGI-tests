@@ -17,16 +17,25 @@ casper.test.begin('Connect to the home page', 1, function (test) {
   });
 });
 
-casper.test.begin('The creation of album should works as expected.', 1, function (test) {
+casper.test.begin('Page des categories', 1, function (test) {
   Categorie.accessPage();
   Categorie.checkPage();
+  casper.run(function () {
+    test.done();
+  });
+});
+
+casper.test.begin('Creation de catégorie', 1, function (test) {
+  Categorie.accessPageCreateCategorie();
+  Categorie.checkPageCreateCategorie();
+  Categorie.createCategorie('CasperJS', 'Bienvenue dans la catégorie CasperJS', 'casperjs.png', 'testCasperJS');
 
   casper.run(function () {
     test.done();
   });
 });
 
-casper.test.begin('The creation of album should works as expected.', 1, function (test) {
+casper.test.begin('tests des articles', 1, function (test) {
   Article.accessPage();
   Article.checkPage();
 

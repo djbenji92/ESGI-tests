@@ -1,5 +1,5 @@
 //Méthode GET : Renvoie l'ensemble des articles de la base de deonnées
-export function getAllArticles(res){
+function getAllArticles(res){
 	//Recherche dans mongo db l'ensemble des articles
 	Article.find(null)
 	.exec(function(err,fiches){
@@ -14,7 +14,7 @@ export function getAllArticles(res){
 }
 
 //Méthode GET : Récupéree un article dans la base de données
-export function getArticle(id, res){
+function getArticle(id, res){
 	Article.find({idArticle:id})
 	.exec(function(err,fiches){
 		if (err==true){
@@ -28,7 +28,7 @@ export function getArticle(id, res){
 
 
 //Méthode POST : Ajoute un article dans la base de données
-export function ajouterArticle(articleDB, categorieDB, res){
+function ajouterArticle(articleDB, categorieDB, res){
 	Article.count({} , function(err, count){
 		var nombreArticle = count + 1;
 		var dateArticle = new Date();

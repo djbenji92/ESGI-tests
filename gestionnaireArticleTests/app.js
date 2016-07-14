@@ -305,4 +305,11 @@ app.get('*', function(req, res) {
 });
 
 console.log("Pour visionner l'application rendez-vous à l'url : localhost:8080");
-app.listen(8080);
+//app.listen(8080);
+var server = app.listen(8080, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('App listening at http://%s:%s', host, port);
+});
+module.exports = server

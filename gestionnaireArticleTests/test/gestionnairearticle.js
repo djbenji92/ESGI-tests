@@ -3,6 +3,7 @@ var chaiHttp = require('chai-http');
 
 var baseUrl = 'http://localhost:8080';
 var mongoose = require('mongoose');
+
 var app = require('../app');
 
 var should = chai.should();
@@ -11,6 +12,21 @@ chai.use(chaiHttp);
 
 
 describe("Gestionnaire article", function() {
+
+  before(function(done) {   
+      mongoose.connect('mongodb://localhost/gestionnaireArticle', function(){
+          mongoose.connection.db.dropDatabase(function(){
+              done();
+          });    
+          done();
+      });
+  });
+  
+
+  after(function(done) {
+      mongoose.connection.close();
+      done();
+  });
 
   describe("create a categorie", function() {
     it("return an object in response", function(done) {

@@ -24,6 +24,7 @@ describe("Gestionnaire article", function() {
 
 
   after(function(done) {
+      //mongoose.connection.db.dropDatabase();
       mongoose.connection.close();
       done();
   });
@@ -46,20 +47,26 @@ describe("Gestionnaire article", function() {
     });
   });
 
+  var article = {"nomArticle":"Mon article angular JS", "descriptionArticle":"Insertion dans la base de données du premier article", "sousTitreArticle":"Sous titre de l'article", "contenuArticle":"Contenu de l'article", "tagArticle":"testArticle"};
+  var categorie = {"ressource":"ressourceMocha"};
+  var tab = [categorie, article];
+
   describe("create an article", function() {
     it("return an object in response", function(done) {
       chai.request(app)
-      .post('/api//api/addArticle')
-       /*.send({"nomCategorie":"Mocha Test", "descriptionCategorie":"test insertion categorie Mocha", "imageCategorie":"imageMocha", "ressource":"ressourceMocha"})
+      .post('/api/addArticle')
+       //.send({"ressource":"ressourceMocha"},{"nomArticle":"Mon article angular JS", "descriptionArticle":"Insertion dans la base de données du premier article", "sousTitreArticle":"Sous titre de l'article", "contenuArticle":"Contenu de l'article", "tagArticle":"testArticle"})
+       .send(tab)
        .end(function(err, res){
-          //console.log(res);
-          res.body.nomCategorie.should.equal("Mocha Test");
-          res.body.descriptionCategorie.should.equal("test insertion categorie Mocha");
-          res.body.imageCategorie.should.equal("imageMocha");
-          res.body.statutCategorie.should.equal("create");
-          res.body.ressourceCategorie.should.equal("ressourceMocha");
+          console.log(res.body);
+          /*res.body[0].nomArticle.should.equal("Mon article angular JS");
+          res.body[0].descriptionArticle.should.equal("Insertion dans la base de données du premier article");
+          res.body[0].sousTitreArticle.should.equal("Sous titre de l'article");
+          res.body[0].contenuArticle.should.equal("Contenu de l'article");
+          res.body[0].tagArticle.should.equal("testArticle");
+          res.body[0]._ressourceCategorie.should.equal("ressourceMocha");*/
           done();
-        })*/
+        })
 
     });
   });
@@ -67,15 +74,15 @@ describe("Gestionnaire article", function() {
   describe("show an article", function() {
     it('should test getArticle', function(done) {
       chai.request(app)
-        .get('/api/article/2', function(req,res){
-          getArticle(2, res);
+        .get('/#/article/1', function(req,res){
+          getArticle(1, res);
         })
         .end(function(err, res){
           res.should.have.status(200);
-          res.body[0].idArticle.should.equal(2);
+          /*res.body[0].idArticle.should.equal(1);
           res.body[0].nomArticle.should.equal('Mon article angular JS')
           res.body[0].descriptionArticle.should.equal('Insertion dans la base de données du premier article')
-          done();
+          */done();
         });
     });
   });

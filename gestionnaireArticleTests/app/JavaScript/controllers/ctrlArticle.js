@@ -69,6 +69,22 @@ function getArticle($scope, $routeParams, $rootScope, $http) {
 		})
 	}
 	$scope.afficheArticle();
+
+	$scope.deleteArticle = function(){
+
+	//alert($routeParams.id);
+		$http.post('/api/article/deleteArticle', [$routeParams.id])
+		.success(function(data){
+			if (data=='err'){
+				alert("Désolé un problème est survenu lors de l'enregistrement");
+			}
+			else{
+				console.log('suppression terminé');
+				document.location.href="http://localhost:8080/#/articles/";
+			}
+		})
+
+	}
 };
 
 function toggle($scope){
@@ -116,6 +132,23 @@ function getArticlesByCategorie($scope, $routeParams, $rootScope, $http){
 		})
 	}
 	$scope.afficheArticlesByCategorie();
+
+	$scope.deleteCategorie = function(){
+		var url = "/api/deleteCategorie/" + $routeParams.ressource;
+
+		$http.post('/api/deleteCategorie', [$routeParams.ressource])
+		.success(function(data){
+			if (data=='err'){
+				alert("Désolé un problème est survenu lors de l'enregistrement");
+			}
+			else{
+				console.log('suppression terminé');
+				document.location.href="http://localhost:8080/#/categories";
+			}
+		})
+
+		//alert($routeParams.ressource);
+	}
 }
 
 function search($scope, $http){

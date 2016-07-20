@@ -19,6 +19,7 @@ var articleSchema=mongoose.Schema({
 	contenuArticle4:{type:String},
 	sousTitreArticle5:{type:String},
 	contenuArticle5:{type:String},
+	statutArticle:{type:String},
 
 	dateArticle:{type:Date},
 	tagArticle:{type:String},
@@ -32,6 +33,7 @@ var categorieSchema=mongoose.Schema({
 	nomCategorie:{type:String},
 	descriptionCategorie:{type:String},
 	imageCategorie:{type:String},
+	statutCategorie:{type:String},
 	ressourceCategorie:{type:String}
 });
 
@@ -75,7 +77,7 @@ app.get('/api/articles', function(req, res) {
 
 function getAllArticles(res){
 	//Recherche dans mongo db l'ensemble des articles
-	Article.find(null)
+	Article.find({statutArticle:"create"})
 	.exec(function(err,fiches){
 		if (err==true){
 			res.send('err');
@@ -137,6 +139,7 @@ function ajouterArticle(articleDB, categorieDB, res){
 
 			sousTitreArticle5:articleDB.sousTitreArticle5,
 			contenuArticle5:articleDB.contenuArticle5,
+			statutArticle:"create",
 
 			dateArticle:dateArticle,
 			tagArticle:articleDB.tagArticle,
@@ -154,13 +157,35 @@ function ajouterArticle(articleDB, categorieDB, res){
 	});
 }
 
+app.post('/api/article/deleteArticle', function(req, res) {
+	//req.params permet d'aller chercher l'id dans l'url et de le recherche dans mongo
+	var requete = req.body[0];
+	console.log(requete);
+	//res.json(requete);
+	deleteArticle(requete, res);
+});
+
+function deleteArticle(id, res){
+	Article.update({idArticle:id}, {statutArticle:"delete"})
+	.exec(function(err,fiches){
+		if (err==true){
+			res.send('err');
+		}
+		else{
+			console.log("suppression ok");
+			res.send("Article supprimée");
+		}
+	})
+
+}
+
 //Categories
 app.get('/api/categories', function(req, res) {
 	getAllCategories(res);
 });
 
 function getAllCategories(res){
-	Categorie.find(null)
+	Categorie.find({statutCategorie:"create"})
 	.exec(function(err,fiches){
 		if (err==true){
 			res.send('err');
@@ -224,6 +249,7 @@ function ajouterCategorie(nom, description, image, ressource, res){
 			nomCategorie:nom,
 			descriptionCategorie:description,
 			imageCategorie:image,
+			statutCategorie:"create",
 			ressourceCategorie:ressource
 		});
 		nouvelleCategorie.save(function(err){
@@ -237,6 +263,28 @@ function ajouterCategorie(nom, description, image, ressource, res){
 		})
 
 	});
+}
+
+app.post('/api/deleteCategorie', function(req, res) {
+	//req.params permet d'aller chercher l'id dans l'url et de le recherche dans mongo
+	var ressourceCat = req.body[0];
+
+	deleteCategorie(ressourceCat, res)
+
+	//deleteArticle(requete.id, res);
+});
+
+function deleteCategorie(ressource, res){
+	Categorie.update({ressourceCategorie:ressource}, {statutCategorie:"delete"})
+	.exec(function(err,fiches){
+		if (err==true){
+			res.send('err');
+		}
+		else{
+			console.log("suppression ok");
+			res.send("Catégorie supprimée");
+		}
+	})
 }
 
 //login

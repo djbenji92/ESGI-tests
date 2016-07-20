@@ -18,7 +18,7 @@ describe("Gestionnaire article", function() {
           mongoose.connection.db.dropDatabase(function(){
               done();
           });
-          done();
+          //done();
       });
   });
 
@@ -47,8 +47,9 @@ describe("Gestionnaire article", function() {
     });
   });
 
+  var ressource = ["ressourceMocha"];
   var article = {"nomArticle":"Mon article angular JS", "descriptionArticle":"Insertion dans la base de données du premier article", "sousTitreArticle":"Sous titre de l'article", "contenuArticle":"Contenu de l'article", "tagArticle":"testArticle"};
-  var categorie = {"ressource":"ressourceMocha"};
+  var categorie = {"ressourceCategorie":"ressourceMocha"};
   var tab = [categorie, article];
 
   describe("create an article", function() {
@@ -58,13 +59,13 @@ describe("Gestionnaire article", function() {
        //.send({"ressource":"ressourceMocha"},{"nomArticle":"Mon article angular JS", "descriptionArticle":"Insertion dans la base de données du premier article", "sousTitreArticle":"Sous titre de l'article", "contenuArticle":"Contenu de l'article", "tagArticle":"testArticle"})
        .send(tab)
        .end(function(err, res){
-          console.log(res.body);
-          /*res.body[0].nomArticle.should.equal("Mon article angular JS");
-          res.body[0].descriptionArticle.should.equal("Insertion dans la base de données du premier article");
-          res.body[0].sousTitreArticle.should.equal("Sous titre de l'article");
-          res.body[0].contenuArticle.should.equal("Contenu de l'article");
-          res.body[0].tagArticle.should.equal("testArticle");
-          res.body[0]._ressourceCategorie.should.equal("ressourceMocha");*/
+          //console.log(res.body);
+          res.body.nomArticle.should.equal("Mon article angular JS");
+          res.body.descriptionArticle.should.equal("Insertion dans la base de données du premier article");
+          res.body.sousTitreArticle.should.equal("Sous titre de l'article");
+          res.body.contenuArticle.should.equal("Contenu de l'article");
+          res.body.tagArticle.should.equal("testArticle");
+          res.body._ressourceCategorie.should.equal("ressourceMocha");
           done();
         })
 
@@ -78,24 +79,24 @@ describe("Gestionnaire article", function() {
           getArticle(1, res);
         })
         .end(function(err, res){
+          console.log(res.body[0]);
           res.should.have.status(200);
-          /*res.body[0].idArticle.should.equal(1);
-          res.body[0].nomArticle.should.equal('Mon article angular JS')
-          res.body[0].descriptionArticle.should.equal('Insertion dans la base de données du premier article')
-          */done();
+          //res.body.nomArticle.should.equal("Mon article angular JS");
+
+
+          done();
         });
     });
   });
 
 
   describe("show a categorie", function() {
-    it('should show categorie 2', function(done) {
+    it('should show categorie 1', function(done) {
       chai.request(app)
-        .get('/#/categorie/angularjs')
+        .get('/#/categorie/ressourceMocha')
         .end(function(err, res, body){
-          console.log(body);
+          //console.log(res.body);
           res.should.have.status(200);
-
           done();
         });
     });
@@ -109,4 +110,36 @@ describe("Gestionnaire article", function() {
         done();
       });
   });
+
+  //Suppression de l'article et de la categorie
+  var tabIdArticle= [1];
+
+  describe("delete an article", function() {
+    it("return validation suppression", function(done) {
+      chai.request(app)
+      .post('/api/article/deleteArticle')
+      .send(tabIdArticle)
+       .end(function(err, res){
+          res.text.should.equal("Article supprimé");
+          done();
+        })
+
+    });
+  });
+
+  //delete categorie
+  describe("delete a categorie", function() {
+    it("return validation suppression", function(done) {
+      chai.request(app)
+      .post('/api/deleteCategorie')
+      .send(ressource)
+       .end(function(err, res){
+          res.text.should.equal("Catégorie supprimée");
+          done();
+        })
+
+    });
+  });
+
+  //
 });

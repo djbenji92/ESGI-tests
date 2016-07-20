@@ -160,7 +160,7 @@ function ajouterArticle(articleDB, categorieDB, res){
 app.post('/api/article/deleteArticle', function(req, res) {
 	//req.params permet d'aller chercher l'id dans l'url et de le recherche dans mongo
 	var requete = req.body[0];
-	console.log(requete);
+	//console.log(requete);
 	//res.json(requete);
 	deleteArticle(requete, res);
 });
@@ -172,8 +172,8 @@ function deleteArticle(id, res){
 			res.send('err');
 		}
 		else{
-			console.log("suppression ok");
-			res.send("Article supprimée");
+			//console.log("suppression ok");
+			res.send("Article supprimé");
 		}
 	})
 
@@ -281,7 +281,7 @@ function deleteCategorie(ressource, res){
 			res.send('err');
 		}
 		else{
-			console.log("suppression ok");
+			//console.log("suppression ok");
 			res.send("Catégorie supprimée");
 		}
 	})

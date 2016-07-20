@@ -25,6 +25,21 @@ function ctrlCategorie($scope,$http){
 	}
 	$scope.affiche();
 
+	$scope.deleteCategorie = function(){
+		var url = "/api/deleteCategorie/" + $routeParams.ressource;
+
+		$http.post('/api/deleteCategorie', [$routeParams.ressource])
+		.success(function(data){
+			if (data=='err'){
+				alert("Désolé un problème est survenu lors de l'enregistrement");
+			}
+			else{
+				console.log('suppression terminé');
+				document.location.href="http://localhost:8080/#/categories";
+			}
+		})
+	}
+
 }
 
 function getCategorie($scope, $routeParams, $rootScope, $http) {

@@ -13,15 +13,15 @@ chai.use(chaiHttp);
 
 describe("Gestionnaire article", function() {
 
-  before(function(done) {   
+  before(function(done) {
       mongoose.connect('mongodb://localhost/gestionnaireArticle', function(){
           mongoose.connection.db.dropDatabase(function(){
               done();
-          });    
+          });
           done();
       });
   });
-  
+
 
   after(function(done) {
       mongoose.connection.close();
@@ -32,19 +32,39 @@ describe("Gestionnaire article", function() {
     it("return an object in response", function(done) {
       chai.request(app)
       .post('/api/addCategorie')
-       .send({"nomCategorie":"Mocha Test", "descriptionCategorie":"test insertion categorie Mocha", "imageCategorie":"imageMocha", "ressourceCategorie":"ressourceMocha"})
+       .send({"nomCategorie":"Mocha Test", "descriptionCategorie":"test insertion categorie Mocha", "imageCategorie":"imageMocha", "ressource":"ressourceMocha"})
        .end(function(err, res){
-          console.log(res);
+          //console.log(res);
           res.body.nomCategorie.should.equal("Mocha Test");
           res.body.descriptionCategorie.should.equal("test insertion categorie Mocha");
           res.body.imageCategorie.should.equal("imageMocha");
+          res.body.statutCategorie.should.equal("create");
+          res.body.ressourceCategorie.should.equal("ressourceMocha");
           done();
         })
-        
+
     });
   });
-    
-  describe("show an article", function() { 
+
+  describe("create an article", function() {
+    it("return an object in response", function(done) {
+      chai.request(app)
+      .post('/api//api/addArticle')
+       /*.send({"nomCategorie":"Mocha Test", "descriptionCategorie":"test insertion categorie Mocha", "imageCategorie":"imageMocha", "ressource":"ressourceMocha"})
+       .end(function(err, res){
+          //console.log(res);
+          res.body.nomCategorie.should.equal("Mocha Test");
+          res.body.descriptionCategorie.should.equal("test insertion categorie Mocha");
+          res.body.imageCategorie.should.equal("imageMocha");
+          res.body.statutCategorie.should.equal("create");
+          res.body.ressourceCategorie.should.equal("ressourceMocha");
+          done();
+        })*/
+
+    });
+  });
+
+  describe("show an article", function() {
     it('should test getArticle', function(done) {
       chai.request(app)
         .get('/api/article/2', function(req,res){
@@ -59,7 +79,7 @@ describe("Gestionnaire article", function() {
         });
     });
   });
-  
+
 
   describe("show a categorie", function() {
     it('should show categorie 2', function(done) {
@@ -68,7 +88,7 @@ describe("Gestionnaire article", function() {
         .end(function(err, res, body){
           console.log(body);
           res.should.have.status(200);
-          
+
           done();
         });
     });

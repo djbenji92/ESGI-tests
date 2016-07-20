@@ -19,7 +19,11 @@
 				    <div class="caption">
 					    <h3>{{categorie.nomCategorie}}</h3>
 					    <p class="justify">{{categorie.descriptionCategorie}}</p>
-					    <p class="center"><a href="#/categorie/{{categorie.ressourceCategorie}}" class="btn btn-primary" role="button">Voir</a></p>
+							<p class="center"><a href="#/categorie/{{categorie.ressourceCategorie}}" class="btn btn-primary" role="button">Voir</a></p>
+							<form>
+									<button id="deleteCategorie" class="btn btn-primary" ng-click="deleteCategorie()">Supprimer</button>
+							</form>
+
 			      </div>
 			    </div>
 			  </div>

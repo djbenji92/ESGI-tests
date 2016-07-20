@@ -146,8 +146,6 @@ function getArticlesByCategorie($scope, $routeParams, $rootScope, $http){
 				document.location.href="http://localhost:8080/#/categories";
 			}
 		})
-
-		//alert($routeParams.ressource);
 	}
 }
 

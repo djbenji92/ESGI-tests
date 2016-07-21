@@ -62,6 +62,26 @@ function Categorie() {
           casper.test.assertTextExists(desc, 'affichage de la description de categorie');
         });
 
+        //
+        casper.then(function() {
+          this.click('#deleteCategorie');
+        });
+
+        casper.then(function success() {
+            casper.waitForUrl(/categories/, function () {
+                casper.echo('La catégorie a été supprimé', 'TRACE');
+            });
+          }, function failure() {
+          casper.test.fail('Echec de la redirection sur la page des catégories');
+        });
+        casper.then(function() {
+          casper.test.assertTextExists("Liste des categories", 'verif titre de la page');
+
+          casper.test.assertTextDoesntExist(nom, "nom n'existe plus");
+          casper.test.assertTextDoesntExist(desc, "description n'existe plus");
+        });
+        //
+
         return this;
     };
 

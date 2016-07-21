@@ -15,10 +15,8 @@ describe("Gestionnaire article", function() {
 
   before(function(done) {
       mongoose.connect('mongodb://localhost/gestionnaireArticle', function(){
-          mongoose.connection.db.dropDatabase(function(){
-              done();
-          });
-          //done();
+          mongoose.connection.db.dropDatabase();
+          done();
       });
   });
 

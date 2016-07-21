@@ -73,14 +73,16 @@ describe("Gestionnaire article", function() {
   describe("show an article", function() {
     it('should test getArticle', function(done) {
       chai.request(app)
-        .get('/#/article/1', function(req,res){
+        .get('/api/article/1', function(req,res){
           getArticle(1, res);
         })
         .end(function(err, res){
           console.log(res.body[0]);
           res.should.have.status(200);
-          //res.body.nomArticle.should.equal("Mon article angular JS");
-
+          res.body[0].nomArticle.should.equal("Mon article angular JS");
+          res.body[0].descriptionArticle.should.equal("Insertion dans la base de données du premier article");
+          res.body[0].sousTitreArticle.should.equal("Sous titre de l'article");
+          res.body[0].tagArticle.should.equal("testArticle");
 
           done();
         });
@@ -91,10 +93,13 @@ describe("Gestionnaire article", function() {
   describe("show a categorie", function() {
     it('should show categorie 1', function(done) {
       chai.request(app)
-        .get('/#/categorie/ressourceMocha')
-        .end(function(err, res, body){
-          //console.log(res.body);
+        .get('/api/categorie/ressourceMocha')
+        .end(function(err, res){
           res.should.have.status(200);
+          res.body[0].nomCategorie.should.equal("Mocha Test");
+          res.body[0].descriptionCategorie.should.equal("test insertion categorie Mocha");
+          res.body[0].imageCategorie.should.equal("imageMocha");
+          res.body[0].ressourceCategorie.should.equal("ressourceMocha");
           done();
         });
     });

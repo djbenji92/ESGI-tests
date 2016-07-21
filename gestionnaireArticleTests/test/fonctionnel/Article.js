@@ -80,6 +80,26 @@ function Article() {
         casper.test.assertTextExists(content5, 'affiche contenu5 article');
       });
 
+      casper.then(function() {
+        this.click('#deleteArticle');
+      });
+
+      casper.then(function success() {
+          casper.waitForUrl(/articles/, function () {
+              casper.echo('L article a été supprimé', 'TRACE');
+          });
+        }, function failure() {
+        casper.test.fail('Echec de la redirection sur la page des articles');
+      });
+      casper.then(function() {
+        casper.test.assertTextExists("Liste des articles", 'verif titre de la page');
+
+        casper.test.assertTextDoesntExist(nom, "nom n'existe plus");
+        casper.test.assertTextDoesntExist(desc, "description n'existe plus");
+        casper.test.assertTextDoesntExist(tag, "tag n'existe plus");
+      });
+
+
     return this;
   };
 }

@@ -15,10 +15,10 @@ function Categorie() {
     };
 
     //Accédr à la page d'insertion de categorie
-    this.urlCreate = "http://localhost:8080/#/createCategorie";
+    this.urlCreateCategorie = "http://localhost:8080/#/createCategorie";
 
     this.accessPageCreateCategorie = function() {
-        casper.start(this.urlCreate);
+        casper.start(this.urlCreateCategorie);
         return this;
     };
 
@@ -30,13 +30,13 @@ function Categorie() {
     };
 
     this.createCategorie = function(nom, desc, image, ressource) {
-        casper.start(this.urlCreate);
+        casper.start(this.urlCreateCategorie);
         casper.then(function() {
             this.fillSelectors('#createCategorie', {
-                '#nom' : nom,
-                '#desc': desc,
-                '#nomImage': image,
-                '#ressource': ressource
+                '#nomCategorie' : nom,
+                '#descCategorie': desc,
+                '#nomImageCategorie': image,
+                '#ressourceCategorie': ressource
             }, false);
         });
 
